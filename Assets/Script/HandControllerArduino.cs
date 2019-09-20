@@ -27,6 +27,7 @@ public class HandControllerArduino : MonoBehaviour
     private List<Vector3> fingerDirectionList = new List<Vector3>();
     private List<Vector3> fingerTipList = new List<Vector3>();
     public bool isMove = false;
+    public bool isStop = false;
     bool isRotateLeft = false;
     bool isRotateRight = false;
     bool isReadyRotate = false;
@@ -134,6 +135,7 @@ public class HandControllerArduino : MonoBehaviour
             }
             else
             {
+                isStop = extendedFingerCount >= 3;
                 fingerDirectionList = new List<Vector3>();
                 fingerTipList = new List<Vector3>();
             }
@@ -152,8 +154,9 @@ public class HandControllerArduino : MonoBehaviour
                 isMove = false;
             }
         }
-        else
+        else if(isStop)
         {
+            print("Stop");
             playerController.Stop();
         }
 
