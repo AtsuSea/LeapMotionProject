@@ -21,8 +21,7 @@ public class HandControllerArduino : MonoBehaviour
 
 
     public PlayerControllerArduino playerController;
-    public const float RecoginizeStopTime = 1.0f;
-    public const float ReloadTime = 0.2f;
+    public const float ReloadTime = 0.1f;
     public const int RemainFingerCount = 3;
     private float remainTime = ReloadTime;
     private List<Vector3> fingerDirectionList = new List<Vector3>();
