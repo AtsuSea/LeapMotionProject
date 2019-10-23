@@ -3,7 +3,6 @@
 public class PlayerController : MonoBehaviour
 {
 
-    public ArduinoManager arduinoManager;
     public float speed;
     float rotateSpeed = 0.0f;
     public float rotateTime;
@@ -107,4 +106,10 @@ public class PlayerController : MonoBehaviour
 
         rotateAndMove = move;
     }
+
+    public void RotateStop()
+    {
+        isRotate = false;
+    }
+
 }

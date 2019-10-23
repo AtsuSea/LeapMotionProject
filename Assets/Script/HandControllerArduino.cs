@@ -141,6 +141,7 @@ public class HandControllerArduino : MonoBehaviour
             }
         }
 
+
         if (isMove)
         {
             
@@ -378,7 +379,6 @@ public class HandControllerArduino : MonoBehaviour
             return 1 - (Math.Abs(x) / denom);
         }
     }
-
 
 
     public void ResetGesutureText()

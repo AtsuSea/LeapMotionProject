@@ -21,13 +21,13 @@ public class Control_UI : MonoBehaviour
 
 
     public PlayerController playerController;
-    public const float RecoginizeStopTime = 1.0f;
-    public const float ReloadTime = 0.4f;
+    public const float ReloadTime = 0.1f;
     public const int RemainFingerCount = 3;
     private float remainTime = ReloadTime;
     private List<Vector3> fingerDirectionList = new List<Vector3>();
     private List<Vector3> fingerTipList = new List<Vector3>();
     public bool isMove = false;
+    public bool isStop = false;
     bool isRotateLeft = false;
     bool isRotateRight = false;
     bool isReadyRotate = false;
@@ -135,6 +135,7 @@ public class Control_UI : MonoBehaviour
             }
             else
             {
+                isStop = extendedFingerCount >= 3;
                 fingerDirectionList = new List<Vector3>();
                 fingerTipList = new List<Vector3>();
             }
@@ -154,7 +155,7 @@ public class Control_UI : MonoBehaviour
                 playerController.RotateChange(Constants.Rotates.None);
             }
         }
-        else
+        else if(isStop)
         {
             playerController.Stop();
         }
@@ -184,6 +185,11 @@ public class Control_UI : MonoBehaviour
             }
             isRotateRight = false;
             ClearParameter();
+        }
+
+        if (extendedFingerCount != 1)
+        {
+            playerController.RotateStop();
         }
 
         //Leap.Vector v = frame.Hands[0].Direction;
@@ -372,7 +378,6 @@ public class Control_UI : MonoBehaviour
             return 1 - (Math.Abs(x) / denom);
         }
     }
-
 
 
     public void ResetGesutureText()

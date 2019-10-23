@@ -1611,6 +1611,11 @@ Prefab:
       propertyPath: serialHandler
       value: 
       objectReference: {fileID: 1204511489}
+    - target: {fileID: 114789495732135054, guid: f00ee30aef9454057935edc7421a1e2f,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f00ee30aef9454057935edc7421a1e2f, type: 2}
   m_IsPrefabParent: 0
@@ -1652,6 +1657,11 @@ Prefab:
     - target: {fileID: 4420159535917468, guid: 92871ace9ae2948778c913d832849df1, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114811636631090972, guid: 92871ace9ae2948778c913d832849df1,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 92871ace9ae2948778c913d832849df1, type: 2}
