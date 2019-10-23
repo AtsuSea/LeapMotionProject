@@ -142,6 +142,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &407888101 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114576248582263720, guid: 4c3cb06ab51614245b155ff6c308b21a,
+    type: 2}
+  m_PrefabInternal: {fileID: 720036764}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &446760631 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114314831831670002, guid: 4c3cb06ab51614245b155ff6c308b21a,
+    type: 2}
+  m_PrefabInternal: {fileID: 720036764}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &537029151
 Prefab:
   m_ObjectHideFlags: 0
@@ -413,9 +425,45 @@ Prefab:
       propertyPath: gestureTypeText
       value: 
       objectReference: {fileID: 833813128}
+    - target: {fileID: 114729771112419912, guid: d3f3e4ac8f53c4af09493fa6dbc289b5,
+        type: 2}
+      propertyPath: recognizeText
+      value: 
+      objectReference: {fileID: 2043535156}
+    - target: {fileID: 114729771112419912, guid: d3f3e4ac8f53c4af09493fa6dbc289b5,
+        type: 2}
+      propertyPath: stopRatioText
+      value: 
+      objectReference: {fileID: 1839371659}
+    - target: {fileID: 114729771112419912, guid: d3f3e4ac8f53c4af09493fa6dbc289b5,
+        type: 2}
+      propertyPath: moveRatioText
+      value: 
+      objectReference: {fileID: 407888101}
+    - target: {fileID: 114729771112419912, guid: d3f3e4ac8f53c4af09493fa6dbc289b5,
+        type: 2}
+      propertyPath: leftRatioText
+      value: 
+      objectReference: {fileID: 446760631}
+    - target: {fileID: 114729771112419912, guid: d3f3e4ac8f53c4af09493fa6dbc289b5,
+        type: 2}
+      propertyPath: rightRatioText
+      value: 
+      objectReference: {fileID: 1171928101}
+    - target: {fileID: 114729771112419912, guid: d3f3e4ac8f53c4af09493fa6dbc289b5,
+        type: 2}
+      propertyPath: straightRatioText
+      value: 
+      objectReference: {fileID: 891815439}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d3f3e4ac8f53c4af09493fa6dbc289b5, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &891815439 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114045107887174084, guid: 4c3cb06ab51614245b155ff6c308b21a,
+    type: 2}
+  m_PrefabInternal: {fileID: 720036764}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1113839217
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,6 +529,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1171928101 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114423807239314344, guid: 4c3cb06ab51614245b155ff6c308b21a,
+    type: 2}
+  m_PrefabInternal: {fileID: 720036764}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!114 &1186725480 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114729771112419912, guid: d3f3e4ac8f53c4af09493fa6dbc289b5,
@@ -573,3 +627,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1355208941}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1839371659 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114447406507044184, guid: 4c3cb06ab51614245b155ff6c308b21a,
+    type: 2}
+  m_PrefabInternal: {fileID: 720036764}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &2043535156 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114732632006520172, guid: 4c3cb06ab51614245b155ff6c308b21a,
+    type: 2}
+  m_PrefabInternal: {fileID: 720036764}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
