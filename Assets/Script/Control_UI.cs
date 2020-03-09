@@ -62,7 +62,6 @@ public class Control_UI : MonoBehaviour
         }
 
 
-
         FingerList fingers = frame.Hands[0].Fingers;
         int extendedFingerCount = 0;
         Finger extendFinger = new Finger();
@@ -135,7 +134,7 @@ public class Control_UI : MonoBehaviour
             }
             else
             {
-                isStop = extendedFingerCount >= 3;
+                isStop = StopRecognize();
                 fingerDirectionList = new List<Vector3>();
                 fingerTipList = new List<Vector3>();
             }
@@ -210,6 +209,13 @@ public class Control_UI : MonoBehaviour
     }
 
     public Vector3 VectorToVector3(Vector d) => new Vector3(d.x, d.y, d.z);
+
+
+    public bool StopRecognize()
+    {
+        
+        return true;
+    }
 
 
     private bool IsRecognize()

@@ -97,7 +97,7 @@ public class SerialHandler : MonoBehaviour
         }
         catch (System.Exception e)
         {
-            Debug.LogWarning(e.Message);
+            //Debug.LogWarning(e.Message);
         }
     }
 }
