@@ -25,7 +25,6 @@ public class PlayerControllerArduino : MonoBehaviour
 
     void Update()
     {
-
         if (isRotateLeftAndGo)
         {
             arduinoManager.RotateLeftAndGo();

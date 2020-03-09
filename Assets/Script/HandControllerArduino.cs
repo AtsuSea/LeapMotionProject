@@ -18,6 +18,8 @@ public class HandControllerArduino : MonoBehaviour
     public Text leftRatioText;
     public Text rightRatioText;
     public Text straightRatioText;
+    public Text fingerRatioText;
+
 
 
     public PlayerControllerArduino playerController;
@@ -31,6 +33,9 @@ public class HandControllerArduino : MonoBehaviour
     bool isRotateLeft = false;
     bool isRotateRight = false;
     bool isReadyRotate = false;
+
+    float SKINO_CORRECTION = 0.1065f;
+    float AOYAGI_CORRECTION = 0.1027f;
 
 
     void Start()
@@ -135,7 +140,7 @@ public class HandControllerArduino : MonoBehaviour
             }
             else
             {
-                isStop = extendedFingerCount >= 3;
+                isStop = StopRecoginize(fingers);
                 fingerDirectionList = new List<Vector3>();
                 fingerTipList = new List<Vector3>();
             }
@@ -157,7 +162,6 @@ public class HandControllerArduino : MonoBehaviour
         }
         else if(isStop)
         {
-            print("Stop");
             playerController.Stop();
         }
 
@@ -213,6 +217,80 @@ public class HandControllerArduino : MonoBehaviour
     public Vector3 VectorToVector3(Vector d) => new Vector3(d.x, d.y, d.z);
 
 
+    public bool StopRecoginize(FingerList fingers)
+    {
+        // print(FuzzyExtended(fingers[1]));
+        //if(fingers.ToList().Where(f => f.Type() != Finger.FingerType.TYPE_THUMB).All(f => FuzzyExtended(f) > 0.5))
+        //{
+        //    print("(●・▽・●)");
+        //    return true;
+        //}
+
+        if(fingers.Count != 5)
+        {
+            return false;
+        }
+
+        foreach (Finger f in fingers)
+        {
+            if (f.Type() != Finger.FingerType.TYPE_THUMB)
+            {
+
+                if (FuzzyExtended(f) < 0.5)
+                {
+                    return false;
+                }
+            }
+        }
+        
+        print("(●・▽・●)");
+        return true;
+    }
+
+
+    public float FuzzyExtended(Finger finger)
+    {
+        Vector prevJoint = finger.Bone(Bone.BoneType.TYPE_METACARPAL).PrevJoint;
+        Vector nextJoint = finger.Bone(Bone.BoneType.TYPE_METACARPAL).NextJoint;
+        Vector3 metacapalVector = new Vector3(nextJoint.x - prevJoint.x, nextJoint.y - prevJoint.y, nextJoint.z - prevJoint.z);
+
+        Vector m = finger.Bone(Bone.BoneType.TYPE_METACARPAL).PrevJoint;
+        Vector p = finger.Bone(Bone.BoneType.TYPE_PROXIMAL).PrevJoint;
+        Vector d = finger.Bone(Bone.BoneType.TYPE_DISTAL).PrevJoint;
+
+        Vector3 A = new Vector3(p.x - m.x, p.y - m.y, p.z - m.z);
+        Vector3 B = new Vector3(d.x - p.x, d.y - p.y, d.z - p.z);
+
+        float cosChild = (A.x * B.x + A.y + B.y + A.z * B.z);
+        float cosParent = (float)Math.Pow((A.x * A.x + A.y * A.y + A.z * A.z) * (B.x * B.x + B.y * B.y + B.z * B.z), 1.0 / 2.0);
+        float cos = cosChild / cosParent;
+        float theta = (float)Math.Acos(cos) * 100;
+        // print($"theta = {theta}");
+
+        if(theta == 0)
+        {
+            return 0;
+        }
+            
+        float left = 0f;
+        float right = 90f;
+
+        if (theta >= right)
+        {
+            return 0;
+        }
+        else if (theta <= left)
+        {
+            return 1;
+        }
+        else
+        {
+            float denom = right - left;
+            return 1 - theta / denom;
+        }
+    }
+
+
     private bool IsRecognize()
     {
         float firstStop = StopRecognitionFuzzy(fingerTipList[2], fingerTipList[1]);
@@ -248,9 +326,16 @@ public class HandControllerArduino : MonoBehaviour
 
     private Constants.MoveStyle ClassificationMoveStyle()
     {
-        //print($"x = {fingerDirectionList[0].x}  y = {fingerDirectionList[0].y}  z = {fingerDirectionList[0].z}");
+        // print($"x = {fingerDirectionList[0].x}  y = {fingerDirectionList[0].y}  z = {fingerDirectionList[0].z}");
 
         float value = fingerDirectionList[0].x;
+
+        print($"角度:{value}");
+        fingerRatioText.text = $"角度:{value}";
+        value = value + AOYAGI_CORRECTION;
+
+
+
 
         float left = LeftRotationClassifyFuzzy(value);
         float right = RightRotationClassifyFuzzy(value);
